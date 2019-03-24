@@ -1,6 +1,7 @@
 import collections
 
 
+# list of field IDs
 listIDs = dict(
     Alignment="-L_dU6cPcS3iiImpDZrT",
     Charisma="-L_dUDDtm6sdJ1JuPaaB",
@@ -22,9 +23,11 @@ listIDs = dict(
     Wounds="-L_dUEKSkyudwTfRIHV6"  # max
 )
 
+# list of fields with max
 maxCases = ("Speed", "Vitality", "Wounds")
 
 
+# create attributes, based on name and value
 def cr_attr(aname, avalue):
     if aname == "Vision/Senses":  # check if name has slash, else normal
         ianame = "VisionSenses"
@@ -40,5 +43,3 @@ def cr_attr(aname, avalue):
 
 if __name__ == '__main__':
     print("ok")
-    print(cr_attr("Vision/Senses", 15))
-    print(cr_attr("Speed", 15))
