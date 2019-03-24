@@ -25,7 +25,7 @@ listIDs = dict(
 maxCases = ("Speed", "Vitality", "Wounds")
 
 
-def crdict(aname, avalue):
+def cr_attr(aname, avalue):
     if aname == "Vision/Senses":  # check if name has slash, else normal
         ianame = "VisionSenses"
     else:
@@ -40,5 +40,5 @@ def crdict(aname, avalue):
 
 if __name__ == '__main__':
     print("ok")
-    print(crdict("Vision/Senses", 15))
-    print(crdict("Speed", 15))
+    print(cr_attr("Vision/Senses", 15))
+    print(cr_attr("Speed", 15))

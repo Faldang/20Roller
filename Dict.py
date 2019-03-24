@@ -1,17 +1,19 @@
 import collections
 import json
 from NPC import NPClass
-from utils20 import crdict
+from utils20 import cr_attr
 
 
 # ID needs to be entered manually, from a JSON export
 inputId = input("Paste ID:\n")
 
 # instantiate the class that will store the converted values
-tempNPC = NPClass('Stefan1', 'Teacher', 10, 'Neutral Evil', 'Natural Humanoid',
+tempNPC = NPClass('Stefan2', 'Teacher', 10, 'Neutral Evil', 'Natural Humanoid',
                   'Small', 15, 10, 16, 8, 14, 18, 5, 70, 14, 13, 12, 7, 6,
                   '', 'Common', 5
                   )
+notesIter = (tempNPC.name, tempNPC.size, tempNPC.race, tempNPC.nclass)
+tempNPCNotes = "; ".join(notesIter)
 
 # create dictionary
 DnDict = collections.OrderedDict(
@@ -26,104 +28,24 @@ DnDict = collections.OrderedDict(
     controlledby="-K14mRt7x_ftUXd4NyLH",
     inplayerjournals="-K14mRt7x_ftUXd4NyLH",
     attribs=[
-        crdict("Alignment", tempNPC.alignment),
-        crdict("Charisma", tempNPC.charisma),
-        collections.OrderedDict(
-            name="Constitution",
-            current=tempNPC.constitution,
-            max="",
-            id="-L_dUCYZPRuvrztj6sdG"
-        ),
-        collections.OrderedDict(
-            name="DRArmour",
-            current=tempNPC.dr,
-            max="",
-            id="-L_dUGnoVaWOa1e2B01_"
-        ),
-        collections.OrderedDict(
-            name="Dexterity",
-            current=tempNPC.dexterity,
-            max="",
-            id="-L_dUChvlJmfmFogiIB7"
-        ),
-        collections.OrderedDict(
-            name="Fortitude",
-            current=tempNPC.fortitude,
-            max="",
-            id="-L_dUFYbK-4UyZ9J8qLm"
-        ),
-        collections.OrderedDict(
-            name="Intelligence",
-            current=tempNPC.intelligence,
-            max="",
-            id="-L_dUCqiOizHGN1cdHs1"
-        ),
-        collections.OrderedDict(
-            name="Languages",
-            current=tempNPC.languages,
-            max="",
-            id="-L_dWUY4zRUKKMO80JlX"
-        ),
-        collections.OrderedDict(
-            name="Level",
-            current=tempNPC.level,
-            max="",
-            id="-L_dU6E8xVHUA5MhmTv5"
-        ),
-        collections.OrderedDict(
-            name="Notes",
-            current=tempNPC.race,
-            max="",
-            id="-L_dWXvrtvR9WhCBX9YT"
-        ),
-        collections.OrderedDict(
-            name="Reflex",
-            current=tempNPC.reflex,
-            max="",
-            id="-L_dUFhbl5JCpu3JEdz6"
-        ),
-        collections.OrderedDict(
-            name="Speed",
-            current=tempNPC.speed,
-            max=tempNPC.speed,
-            id="-L_dWRtftkSBefqkiLkn"
-        ),
-        collections.OrderedDict(
-            name="Strength",
-            current=tempNPC.strength,
-            max="",
-            id="-L_dUBVyWQQxJ8rU6ITn"
-        ),
-        collections.OrderedDict(
-            name="Vision/Senses",
-            current=tempNPC.senses,
-            max="",
-            id="-L_dWTls8s8AuJG8vHEw"
-        ),
-        collections.OrderedDict(
-            name="Vitality",
-            current=tempNPC.vitality,
-            max=tempNPC.vitality,
-            id="-L_dUEnM4qam4HRQ5342"
-        ),
-        collections.OrderedDict(
-            name="Will",
-            current=tempNPC.will,
-            max="",
-            id="-L_dUFqEWMmLAqh0lo40"
-        ),
-        collections.OrderedDict(
-            name="Wisdom",
-            current=tempNPC.wisdom,
-            max="",
-            id="-L_dUCz4_tkKepldqgMl"
-        ),
-        collections.OrderedDict(
-            name="Wounds",
-            current=tempNPC.wounds,
-            max=tempNPC.wounds,
-            id="-L_dUEKSkyudwTfRIHV6"
-        )
+        cr_attr("Alignment", tempNPC.alignment),
+        cr_attr("Charisma", tempNPC.charisma),
+        cr_attr("Constitution", tempNPC.constitution),
+        cr_attr("DRArmour", tempNPC.dr),
+        cr_attr("Dexterity", tempNPC.dexterity),
+        cr_attr("Fortitude", tempNPC.fortitude),
+        cr_attr("Intelligence", tempNPC.intelligence),
+        cr_attr("Languages", tempNPC.languages),
+        cr_attr("Level", tempNPC.level),
+        cr_attr("Notes", tempNPCNotes),
+        cr_attr("Reflex", tempNPC.reflex),
+        cr_attr("Speed", tempNPC.speed),
+        cr_attr("Strength", tempNPC.strength),
+        cr_attr("Vision/Senses", tempNPC.senses),
+        cr_attr("Vitality", tempNPC.vitality),
+        cr_attr("Will", tempNPC.will),
+        cr_attr("Wisdom", tempNPC.wisdom),
+        cr_attr("Wounds", tempNPC.wounds)
     ],
     abilities=[]
     )
