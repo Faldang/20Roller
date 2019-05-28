@@ -25,3 +25,9 @@ class NPClass:
         self.senses = senses
         self.languages = languages
         self.initiative = initiative
+
+# Stores the NPC class used in other modules
+
+
+if __name__ == '__main__':
+    print("NPC.py")

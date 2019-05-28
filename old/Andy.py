@@ -25,12 +25,14 @@ root = tk.Tk()
 frame = tk.Frame(root)
 frame.pack()
 
+# button code example
 button = tk.Button(frame, text="QUIT", command=quit)
 button.pack(side=tk.LEFT)
 
 slogan = tk.Button(frame, text="Hello", command=write_slogan)
 slogan.pack(side=tk.LEFT)
 
+# window text label code example
 w = tk.Label(root, text="Hello Poop")
 w.pack()
 
