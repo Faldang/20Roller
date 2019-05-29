@@ -1,6 +1,5 @@
 import collections
 
-
 # list of field IDs
 listIDs = dict(
     Alignment="-L_dU6cPcS3iiImpDZrT",
@@ -20,17 +19,54 @@ listIDs = dict(
     Vitality="-L_dUEnM4qam4HRQ5342",  # max
     Will="-L_dUFqEWMmLAqh0lo40",
     Wisdom="-L_dUCz4_tkKepldqgMl",
-    Wounds="-L_dUEKSkyudwTfRIHV6"  # max
+    Wounds="-L_dUEKSkyudwTfRIHV6",  # max
+    FaithsheetPoints="-Lg3BaDehLQ9_Zk_koyK"
 )
 
 # list of fields with max
 maxCases = ("Speed", "Vitality", "Wounds")
+
+# level conversion dict
+levels = {
+    '1': 1,
+    '2': 2,
+    '3': 2,
+    '4': 3,
+    '5': 4,
+    '6': 4,
+    '7': 5,
+    '8': 6,
+    '9': 6,
+    '10': 7,
+    '11': 8,
+    '12': 8,
+    '13': 9,
+    '14': 10,
+    '15': 10,
+    '16': 11,
+    '17': 12,
+    '18': 12,
+    '19': 13,
+    '20': 14,
+    '21': 14,
+    '22': 15,
+    '23': 16,
+    '24': 16,
+    '25': 17,
+    '26': 18,
+    '27': 18,
+    '28': 19,
+    '29': 20,
+    '30': 20
+}
 
 
 # create attributes, based on name and value
 def cr_attr(aname, avalue):
     if aname == "Vision/Senses":  # check if name has slash, else normal
         ianame = "VisionSenses"
+    elif aname == "Faith sheet-Points":  # cover special case for FPs
+        ianame = "FaithsheetPoints"
     else:
         ianame = aname
     return collections.OrderedDict(

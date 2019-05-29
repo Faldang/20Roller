@@ -2,7 +2,7 @@ class NPClass:
     def __init__(self, name, nclass, level, alignment, race, size, strength,
                  constitution, dexterity, intelligence, wisdom, charisma,
                  wounds, vitality, fortitude, reflex, will, dr, speed, senses,
-                 languages, initiative):
+                 languages, faith):
         self.name = name
         self.nclass = nclass
         self.level = level
@@ -24,7 +24,7 @@ class NPClass:
         self.speed = speed
         self.senses = senses
         self.languages = languages
-        self.initiative = initiative
+        self.faith = faith
 
 # Stores the NPC class used in other modules
 

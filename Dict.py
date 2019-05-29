@@ -1,19 +1,19 @@
 import collections
 import json
-from NPC import NPClass
 from utils20 import cr_attr
 
 
-def create_main_dict():
+def create_main_dict(import_id, tempnpc):
     # ID needs to be entered manually, from a JSON export
     # inputid = input("Paste ID:\n")
-    inputid = "id"
+    inputid = import_id
 
     # instantiate the class that will store the converted values
-    tempnpc = NPClass('Stefan2', 'Teacher', 10, 'Neutral Evil',
-                      'Natural Humanoid', 'Small', 15, 10, 16, 8, 14, 18, 5,
-                      70, 14, 13, 12, 7, 6, '', 'Common', 5
-                      )
+    # tempnpc = NPClass('Stefan2', 'Teacher', 10, 'Neutral Evil',
+    #                   'Natural Humanoid', 'Small', 15, 10, 16, 8, 14, 18, 5,
+    #                   70, 14, 13, 12, 7, 6, '', 'Common', 5
+    #                   )
+
     notesiter = (tempnpc.name, tempnpc.size, tempnpc.race, tempnpc.nclass)
     tempnpcnotes = "; ".join(notesiter)
 
@@ -47,7 +47,8 @@ def create_main_dict():
             cr_attr("Vitality", tempnpc.vitality),
             cr_attr("Will", tempnpc.will),
             cr_attr("Wisdom", tempnpc.wisdom),
-            cr_attr("Wounds", tempnpc.wounds)
+            cr_attr("Wounds", tempnpc.wounds),
+            cr_attr("Faith sheet-Points", tempnpc.faith)
         ],
         abilities=[
             # unused code for abilities due to import issues
@@ -66,9 +67,9 @@ def create_main_dict():
     return dndict
 
 
-def json_encode():
+def json_encode(id_var, object_var):
     # write to a JSON file
-    json_dict = create_main_dict()
+    json_dict = create_main_dict(id_var, object_var)
     with open(json_dict["name"]+".json", "w") as write_file:
         json.dump(json_dict, write_file, indent=4)
 

@@ -1,16 +1,15 @@
 import tkinter
-# import Dict
-
-
-# def multiply(x):
-#     output_label['text'] = str(x*2)
-
+import tkinter.messagebox
+import Dict
+import Converter
+from NPC import NPClass
 
 # create root widget, a window
 root = tkinter.Tk()
 root.title('DnD4 to Radiance Monster Converter')
 root.state('zoomed')
 
+# set up frames, note that 8th frame was later moved up
 first_frame = tkinter.Frame(root)
 first_frame.place(relheight=0.05, relwidth=1, rely=0)
 second_frame = tkinter.Frame(root)
@@ -30,6 +29,7 @@ seventh_frame.place(relheight=0.6, relwidth=1, rely=0.35)
 ninth_frame = tkinter.Frame(root)
 ninth_frame.place(relheight=0.05, relwidth=1, rely=0.95)
 
+# GUI elements follow
 name_label = tkinter.Label(first_frame, text="Name")
 name_label.place(relx=0, relwidth=0.13)
 name_input = tkinter.Entry(first_frame)
@@ -40,16 +40,15 @@ level_label.place(relwidth=0.13, relx=0.33)
 level_input = tkinter.Spinbox(first_frame, from_=1, to=30)
 level_input.place(relwidth=0.2, relx=0.46)
 
-class_label = tkinter.Label(first_frame, text="Class")
-class_label.place(relwidth=0.13, relx=0.66)
-class_input = tkinter.Entry(first_frame)
-class_input.place(relwidth=0.2, relx=0.8)
+class_label = tkinter.Label(second_frame, text="Class")
+class_label.place(relwidth=0.13, relx=0)
+class_input = tkinter.Entry(second_frame)
+class_input.place(relwidth=0.2, relx=0.13)
 
-size_label = tkinter.Label(second_frame, text="Size")
+size_label = tkinter.Label(third_frame, text="Size")
 size_label.place(relx=0, relwidth=0.13)
-size_input = tkinter.Spinbox(second_frame, values=("Tiny", "Small", "Medium",
-                                                   "Large", "Huge",
-                                                   "Gargantuan"), wrap=True)
+size_input = tkinter.Spinbox(third_frame, values=("Tiny", "Small", "Medium",
+                                                  "Large", "Huge",), wrap=True)
 size_input.place(relx=0.13, relwidth=0.2)
 
 race_label = tkinter.Label(second_frame, text="Race")
@@ -57,14 +56,16 @@ race_label.place(relx=0.33, relwidth=0.13)
 race_input = tkinter.Entry(second_frame)
 race_input.place(relx=0.46, relwidth=0.2)
 
-initiative_label = tkinter.Label(third_frame, text="Initiative")
-initiative_label.place(relx=0, relwidth=0.13)
-initiative_input = tkinter.Entry(third_frame)
-initiative_input.place(relx=0.13, relwidth=0.2)
+# Initiative deprecated
+# initiative_label = tkinter.Label(third_frame, text="Initiative")
+# initiative_label.place(relx=0, relwidth=0.13)
+# initiative_input = tkinter.Entry(third_frame)
+# initiative_input.place(relx=0.13, relwidth=0.2)
 
 senses_label = tkinter.Label(third_frame, text="Senses")
 senses_label.place(relx=0.33, relwidth=0.13)
 senses_input = tkinter.Entry(third_frame)
+senses_input.insert('end', '')
 senses_input.place(relx=0.46, relwidth=0.2)
 
 ac_label = tkinter.Label(fourth_frame, text="Armor Class")
@@ -258,30 +259,40 @@ charisma_input.place(relx=0.79, relwidth=0.2, rely=0.5, relheight=0.1)
 equipment_label = tkinter.Label(seventh_frame, text="Equipment")
 equipment_label.place(relx=0.66, relwidth=0.13, rely=0.6, relheight=0.1)
 equipment_input = tkinter.Entry(seventh_frame)
+equipment_input.insert('end', '')
 equipment_input.place(relx=0.79, relwidth=0.2, rely=0.6, relheight=0.1)
 
-# _label = tkinter.Label(, text="")
-# _label.place(relx=0, relwidth=0)
-# _input = tkinter.Entry()
-# _input.place(relx=0, relwidth=0)
+r20id_label = tkinter.Label(seventh_frame, text="Roll20 Import ID")
+r20id_label.place(relx=0.66, relwidth=0.13, rely=0.7, relheight=0.1)
+r20id_input = tkinter.Entry(seventh_frame)
+r20id_input.insert('end', '')
+r20id_input.place(relx=0.79, relwidth=0.2, rely=0.7, relheight=0.1)
+# end GUI elements
+
+# instantiate the class that will store the converted values
 
 
-# button = tkinter.Button(first_frame, text="Button",
-#                         command=lambda: multiply(int(input_box.get())))
-# button.place(relx=0.45, rely=0, relwidth=0.1, relheight=0.5)
+def does_stuff():
+    npc_obj = NPClass(name_input.get(),
+                      class_input.get(),
+                      Converter.radiance_conversion('Level', level_input.get()),
+                      align_input.get(),
+                      race_input.get(),
+                      size_input.get(),
+                      15, 10, 16, 8, 14, 18, 5, 70, 14, 13, 12, 7, 6,
+                      '',
+                      'Common',
+                      ap_input.get())
+    Dict.json_encode(r20id_input.get(), npc_obj)
+    tkinter.messagebox.showinfo("Title", 'Done')
 
-# output_label = tkinter.Label(first_frame)
-# output_label.place(relx=0.6, rely=0, relwidth=0.3, relheight=0.5)
 
-# quit button
-# quit_button = tkinter.Button(root, text="QUIT", command=quit)
-# quit_button.pack()
-#
-# # json encode button
-# json_button = tkinter.Button(root,
-#                              text="RUN JSON RUN",
-#                              command=Dict.json_encode)
-# json_button.pack()
+button = tkinter.Button(ninth_frame, text="GO!", bg='green', fg='white',
+                        command=does_stuff)
+button.place(relx=0.2, relwidth=0.2)
+quit_button = tkinter.Button(ninth_frame, text="QUIT", command=quit, bg='red',
+                             fg='white')
+quit_button.place(relx=0.5, relwidth=0.2)
 
 # keeps it running until exit
 root.mainloop()
