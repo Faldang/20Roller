@@ -48,7 +48,24 @@ def create_main_dict(import_id, tempnpc):
             cr_attr("Will", tempnpc.will),
             cr_attr("Wisdom", tempnpc.wisdom),
             cr_attr("Wounds", tempnpc.wounds),
-            cr_attr("Faith sheet-Points", tempnpc.faith)
+            cr_attr("Faith sheet-Points", tempnpc.faith),
+            cr_attr("AcrobaticsModifier", tempnpc.acrobatics),
+            cr_attr("ArcanaModifier", tempnpc.arcana),
+            cr_attr("AthleticsModifier", tempnpc.athletics),
+            cr_attr("BluffModifier", tempnpc.bluff),
+            cr_attr("DiplomacyModifier", tempnpc.diplomacy),
+            cr_attr("DungeoneeringModifier", tempnpc.dungeoneering),
+            cr_attr("EnduranceModifier", tempnpc.endurance),
+            cr_attr("HealModifier", tempnpc.heal),
+            cr_attr("HistoryModifier", tempnpc.history),
+            cr_attr("InsightModifier", tempnpc.insight),
+            cr_attr("IntimidateModifier", tempnpc.intimidate),
+            cr_attr("NatureModifier", tempnpc.nature),
+            cr_attr("PerceptionModifier", tempnpc.perception),
+            cr_attr("ReligionModifier", tempnpc.religion),
+            cr_attr("StealthModifier", tempnpc.stealth),
+            cr_attr("StreetwiseModifier", tempnpc.streetwise),
+            cr_attr("TrickModifier", tempnpc.trick)
         ],
         abilities=[
             # unused code for abilities due to import issues
