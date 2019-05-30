@@ -6,3 +6,5 @@ Conversion is done based on the suggestions from Dario Nardi, the creator of Rad
 The app outputs a JSON file that can be imported to Roll20 by using the Roll20 Enhancement Suite browser addon
 
 Run the app by running 20Roller.py, fill out all the fields and click GO! The JSON file will be created in the same folder.
+
+This is pretty much the first real thing I wrote in Python, from scratch.
